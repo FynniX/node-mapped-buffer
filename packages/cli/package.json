@@ -1,0 +1,34 @@
+{
+  "name": "@node-mapped-buffer/cli",
+  "description": "CLI for node-mapped-buffer, a implementation of Memory Mapped Buffer for node.js.",
+  "author": "Fynn Haupt",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "Memory",
+    "Mapped",
+    "Buffer",
+    "CLI"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build:parser": "pnpm exec rimraf src/parser && antlr4 -Dlanguage=TypeScript Schema.g4 -visitor -o src/parser",
+    "build:src": "pnpm exec rimraf dist && pnpm exec rollup -c",
+    "build": "pnpm run build:parser && pnpm run build:src"
+  },
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-multi-entry": "^6.0.1",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/node": "^20.12.7",
+    "rimraf": "^5.0.5",
+    "rollup": "^4.15.0",
+    "tslib": "^2.6.2",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "antlr4": "4.13.1-patch-1"
+  }
+}
