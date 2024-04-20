@@ -13,6 +13,16 @@
   "publishConfig": {
     "access": "public"
   },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
   "scripts": {
     "build:parser": "pnpm exec rimraf src/parser && antlr4 -Dlanguage=TypeScript Schema.g4 -visitor -o src/parser",
     "build:src": "pnpm exec rimraf dist && pnpm exec rollup -c",
