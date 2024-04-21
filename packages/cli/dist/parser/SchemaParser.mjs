@@ -1,5 +1,8 @@
+#!/usr/bin/env node
 import { Token, DFA, Parser, FailedPredicateException, ParserATNSimulator, PredictionContextCache, RecognitionException, NoViableAltException, ATNDeserializer, ParserRuleContext } from 'antlr4';
 
+// Generated from Schema.g4 by ANTLR 4.13.1
+// noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 class SchemaParser extends Parser {
     get grammarFileName() { return "Schema.g4"; }
     get literalNames() { return SchemaParser.literalNames; }
@@ -13,6 +16,7 @@ class SchemaParser extends Parser {
         super(input);
         this._interp = new ParserATNSimulator(this, SchemaParser._ATN, SchemaParser.DecisionsToDFA, new PredictionContextCache());
     }
+    // @RuleVersion(0)
     schema() {
         let localctx = new SchemaContext(this, this._ctx, this.state);
         this.enterRule(localctx, 0, SchemaParser.RULE_schema);
@@ -53,6 +57,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     struct() {
         let localctx = new StructContext(this, this._ctx, this.state);
         this.enterRule(localctx, 2, SchemaParser.RULE_struct);
@@ -108,6 +113,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     pathCommand() {
         let localctx = new PathCommandContext(this, this._ctx, this.state);
         this.enterRule(localctx, 4, SchemaParser.RULE_pathCommand);
@@ -137,6 +143,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     type_() {
         let localctx = new TypeContext(this, this._ctx, this.state);
         this.enterRule(localctx, 6, SchemaParser.RULE_type);
@@ -235,6 +242,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     array() {
         let localctx = new ArrayContext(this, this._ctx, this.state);
         this.enterRule(localctx, 8, SchemaParser.RULE_array);
@@ -273,6 +281,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     dimension() {
         let localctx = new DimensionContext(this, this._ctx, this.state);
         this.enterRule(localctx, 10, SchemaParser.RULE_dimension);
@@ -302,6 +311,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     primitiveType() {
         let localctx = new PrimitiveTypeContext(this, this._ctx, this.state);
         this.enterRule(localctx, 12, SchemaParser.RULE_primitiveType);
@@ -335,6 +345,7 @@ class SchemaParser extends Parser {
         }
         return localctx;
     }
+    // @RuleVersion(0)
     userType() {
         let localctx = new UserTypeContext(this, this._ctx, this.state);
         this.enterRule(localctx, 14, SchemaParser.RULE_userType);
@@ -455,6 +466,7 @@ SchemaParser.symbolicNames = [null, null,
     "NAME", "NUMBER",
     "NEWLINE",
     "WHITESPACE"];
+// tslint:disable:no-trailing-whitespace
 SchemaParser.ruleNames = [
     "schema", "struct", "pathCommand", "type", "array", "dimension", "primitiveType",
     "userType",
@@ -508,6 +520,7 @@ class SchemaContext extends ParserRuleContext {
             listener.exitSchema(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitSchema) {
             return visitor.visitSchema(this);
@@ -553,6 +566,7 @@ class StructContext extends ParserRuleContext {
             listener.exitStruct(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitStruct) {
             return visitor.visitStruct(this);
@@ -586,6 +600,7 @@ class PathCommandContext extends ParserRuleContext {
             listener.exitPathCommand(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitPathCommand) {
             return visitor.visitPathCommand(this);
@@ -631,6 +646,7 @@ class TypeContext extends ParserRuleContext {
             listener.exitType(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitType) {
             return visitor.visitType(this);
@@ -664,6 +680,7 @@ class ArrayContext extends ParserRuleContext {
             listener.exitArray(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitArray) {
             return visitor.visitArray(this);
@@ -700,6 +717,7 @@ class DimensionContext extends ParserRuleContext {
             listener.exitDimension(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitDimension) {
             return visitor.visitDimension(this);
@@ -727,6 +745,7 @@ class PrimitiveTypeContext extends ParserRuleContext {
             listener.exitPrimitiveType(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitPrimitiveType) {
             return visitor.visitPrimitiveType(this);
@@ -757,6 +776,7 @@ class UserTypeContext extends ParserRuleContext {
             listener.exitUserType(this);
         }
     }
+    // @Override
     accept(visitor) {
         if (visitor.visitUserType) {
             return visitor.visitUserType(this);

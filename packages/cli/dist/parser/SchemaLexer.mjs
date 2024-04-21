@@ -1,5 +1,8 @@
+#!/usr/bin/env node
 import { Token, DFA, Lexer, LexerATNSimulator, PredictionContextCache, ATNDeserializer } from 'antlr4';
 
+// Generated from Schema.g4 by ANTLR 4.13.1
+// noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 class SchemaLexer extends Lexer {
     constructor(input) {
         super(input);

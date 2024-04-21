@@ -1,9 +1,12 @@
+#!/usr/bin/env node
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var antlr4 = require('antlr4');
 
+// Generated from Schema.g4 by ANTLR 4.13.1
+// noinspection ES6UnusedImports,JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 class SchemaLexer extends antlr4.Lexer {
     constructor(input) {
         super(input);
