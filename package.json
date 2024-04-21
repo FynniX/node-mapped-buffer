@@ -24,8 +24,8 @@
     "prepare": "husky"
   },
   "lint-staged": {
-    "packages/**/*": [
-      "eslint --ext .ts --fix",
+    "packages/**/*.ts": [
+      "eslint --fix",
       "prettier --write --ignore-unknown"
     ]
   },
