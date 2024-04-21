@@ -1,5 +1,5 @@
 {
-  "name": "node-mapped-buffer",
+  "name": "@mapped.js/buffer",
   "description": "A implementation of Memory Mapped Buffer for node.js.",
   "author": "Fynn Haupt",
   "version": "1.0.0",
@@ -9,6 +9,19 @@
     "Mapped",
     "Buffer"
   ],
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

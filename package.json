@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "node-mapped-buffer-root",
+  "name": "mapped.js",
   "description": "A implementation of Memory Mapped Buffer for node.js.",
   "author": "Fynn Haupt",
   "version": "1.0.0",

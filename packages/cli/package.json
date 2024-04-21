@@ -28,6 +28,9 @@
       "require": "./dist/schema.js"
     }
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "build:parser": "pnpm exec rimraf src/parser && antlr4 -Dlanguage=TypeScript Schema.g4 -visitor -o src/parser",
     "build:src": "pnpm exec rimraf dist && pnpm exec rollup -c",
