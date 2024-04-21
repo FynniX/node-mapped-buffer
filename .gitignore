@@ -49,5 +49,8 @@ jspm_packages/
 # _virtual folder
 _virtual/
 
+# .schema folders
+schema.ts
+
 # Codealike files
 codealike.json
