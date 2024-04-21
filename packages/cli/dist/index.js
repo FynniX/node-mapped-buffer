@@ -12,7 +12,7 @@ var loadConfigFile_js = require('rollup/dist/loadConfigFile.js');
 
 function generate(schemaPath, logging = false) {
     // Generate content
-    let content = "";
+    let content = '';
     const schema = SchemaReader.SchemaReader.read(schemaPath, logging);
     for (const [name, struct] of schema.entries()) {
         const path = struct.path ? `export const ${name}Path = '${struct.path}'\n\n` : '';
@@ -27,7 +27,7 @@ function generate(schemaPath, logging = false) {
 function build(cb) {
     // Load config
     loadConfigFile_js.loadConfigFile(path.join(__dirname, '../rollup.config.mjs'), {
-        input: path.join(__dirname, '../src/schema.ts'),
+        input: path.join(__dirname, '../src/schema.ts')
     })
         .then(({ options, warnings }) => {
         // This prints all deferred warnings

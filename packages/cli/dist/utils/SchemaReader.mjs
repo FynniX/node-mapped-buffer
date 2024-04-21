@@ -114,8 +114,8 @@ class SchemaReader {
             parser.removeErrorListeners();
         parser.addErrorListener({
             syntaxError(_, __, line, column, msg) {
-                throw new Error("line " + line + ":" + column + " " + msg);
-            },
+                throw new Error('line ' + line + ':' + column + ' ' + msg);
+            }
         });
         const visitor = new SchemaReader();
         visitor.visitSchema(parser.schema());
