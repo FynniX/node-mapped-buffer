@@ -9,14 +9,10 @@ export default {
   external: [
     "fs",
     "path",
-    "rimraf",
     "commander",
     "antlr4",
     "rollup",
     "rollup/dist/loadConfigFile.js",
-    "@rollup/plugin-typescript",
-    "@rollup/plugin-commonjs",
-    "@rollup/plugin-multi-entry",
     "@prettier/sync",
   ],
   output: [

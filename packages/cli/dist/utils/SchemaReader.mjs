@@ -105,11 +105,18 @@ class SchemaReader {
     getStructs() {
         return this.structs;
     }
-    static read(path) {
+    static read(path, logging = false) {
         const stream = new CharStream(readFileSync(resolve(path), 'utf-8'));
         const lexer = new SchemaLexer(stream);
         const tokens = new CommonTokenStream(lexer);
         const parser = new SchemaParser(tokens);
+        if (!logging)
+            parser.removeErrorListeners();
+        parser.addErrorListener({
+            syntaxError(_, __, line, column, msg) {
+                throw new Error("line " + line + ":" + column + " " + msg);
+            },
+        });
         const visitor = new SchemaReader();
         visitor.visitSchema(parser.schema());
         return visitor.getStructs();

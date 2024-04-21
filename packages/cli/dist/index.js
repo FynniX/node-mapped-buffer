@@ -10,10 +10,10 @@ var sync = require('@prettier/sync');
 var rollup = require('rollup');
 var loadConfigFile_js = require('rollup/dist/loadConfigFile.js');
 
-function generate(schemaPath) {
+function generate(schemaPath, logging = false) {
     // Generate content
     let content = "";
-    const schema = SchemaReader.SchemaReader.read(schemaPath);
+    const schema = SchemaReader.SchemaReader.read(schemaPath, logging);
     for (const [name, struct] of schema.entries()) {
         const path = struct.path ? `export const ${name}Path = '${struct.path}'\n\n` : '';
         const template = StructBuilder.StructBuilder.toString(name, struct.template);
@@ -24,7 +24,7 @@ function generate(schemaPath) {
     fs.writeFileSync(path.join(__dirname, '../src/schema.ts'), sync.format(content, { parser: 'typescript' }));
     console.log(`Generated ${schema.size} structs.`);
 }
-function build() {
+function build(cb) {
     // Load config
     loadConfigFile_js.loadConfigFile(path.join(__dirname, '../rollup.config.mjs'), {
         input: path.join(__dirname, '../src/schema.ts'),
@@ -39,18 +39,27 @@ function build() {
                     .then(() => {
                     // Close bundle
                     bundle.close();
+                    // Build successfully
                     console.log('Build successfully.');
+                    if (cb)
+                        cb();
                 })
                     .catch((error) => {
+                    if (cb)
+                        cb(error);
                     throw error;
                 });
             })
                 .catch((error) => {
+                if (cb)
+                    cb(error);
                 throw error;
             });
         }
     })
         .catch((error) => {
+        if (cb)
+            cb(error);
         throw error;
     });
 }

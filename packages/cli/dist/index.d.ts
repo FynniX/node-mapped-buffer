@@ -1,2 +1,2 @@
-export declare function generate(schemaPath: string): void
-export declare function build(): void
+export declare function generate(schemaPath: string, logging?: boolean): void
+export declare function build(cb?: (error?: Error) => void): void

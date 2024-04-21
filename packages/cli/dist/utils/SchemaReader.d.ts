@@ -12,6 +12,6 @@ export declare class SchemaReader {
   private getArrayLength
   private getVarType
   getStructs(): Map<string, StructResult>
-  static read(path: string): Map<string, StructResult>
+  static read(path: string, logging?: boolean): Map<string, StructResult>
 }
 export {}

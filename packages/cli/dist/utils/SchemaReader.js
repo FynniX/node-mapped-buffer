@@ -107,11 +107,18 @@ class SchemaReader {
     getStructs() {
         return this.structs;
     }
-    static read(path$1) {
+    static read(path$1, logging = false) {
         const stream = new antlr4.CharStream(fs.readFileSync(path.resolve(path$1), 'utf-8'));
         const lexer = new SchemaLexer.default(stream);
         const tokens = new antlr4.CommonTokenStream(lexer);
         const parser = new SchemaParser.default(tokens);
+        if (!logging)
+            parser.removeErrorListeners();
+        parser.addErrorListener({
+            syntaxError(_, __, line, column, msg) {
+                throw new Error("line " + line + ":" + column + " " + msg);
+            },
+        });
         const visitor = new SchemaReader();
         visitor.visitSchema(parser.schema());
         return visitor.getStructs();

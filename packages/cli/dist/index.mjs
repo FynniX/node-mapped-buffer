@@ -8,10 +8,10 @@ import { format } from '@prettier/sync';
 import { rollup } from 'rollup';
 import { loadConfigFile } from 'rollup/dist/loadConfigFile.js';
 
-function generate(schemaPath) {
+function generate(schemaPath, logging = false) {
     // Generate content
     let content = "";
-    const schema = SchemaReader.read(schemaPath);
+    const schema = SchemaReader.read(schemaPath, logging);
     for (const [name, struct] of schema.entries()) {
         const path = struct.path ? `export const ${name}Path = '${struct.path}'\n\n` : '';
         const template = StructBuilder.toString(name, struct.template);
@@ -22,7 +22,7 @@ function generate(schemaPath) {
     writeFileSync(join(__dirname, '../src/schema.ts'), format(content, { parser: 'typescript' }));
     console.log(`Generated ${schema.size} structs.`);
 }
-function build() {
+function build(cb) {
     // Load config
     loadConfigFile(join(__dirname, '../rollup.config.mjs'), {
         input: join(__dirname, '../src/schema.ts'),
@@ -37,18 +37,27 @@ function build() {
                     .then(() => {
                     // Close bundle
                     bundle.close();
+                    // Build successfully
                     console.log('Build successfully.');
+                    if (cb)
+                        cb();
                 })
                     .catch((error) => {
+                    if (cb)
+                        cb(error);
                     throw error;
                 });
             })
                 .catch((error) => {
+                if (cb)
+                    cb(error);
                 throw error;
             });
         }
     })
         .catch((error) => {
+        if (cb)
+            cb(error);
         throw error;
     });
 }
