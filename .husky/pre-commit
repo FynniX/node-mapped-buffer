@@ -1,3 +1,4 @@
 pnpm run build
 git add packages/cli/dist
+git add packages/buffer/dist
 pnpm exec lint-staged --allow-empty
