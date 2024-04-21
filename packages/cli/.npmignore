@@ -1,4 +1,5 @@
 .antlr/
+node_modules/
 src/
 **/*/_virtual/
 **/*/.schema/
