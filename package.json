@@ -16,7 +16,8 @@
   "packageManager": "pnpm@8.15.6",
   "scripts": {
     "build:cli": "cd packages/cli && pnpm run build",
-    "build": "pnpm run build:cli",
+    "build:buffer": "cd packages/buffer && pnpm run build",
+    "build": "pnpm run build:cli && pnpm run build:buffer",
     "lint": "pnpm exec eslint packages/ --ext .ts",
     "lint:fix": "pnpm exec eslint packages/ --ext .ts --fix",
     "format": "pnpm exec prettier packages/ --check --ignore-unknown",

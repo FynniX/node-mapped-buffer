@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.embeddedhtml": "html",
+        "*.css": "tailwindcss",
+        "xstring": "cpp",
+        "iostream": "cpp",
+        "xlocinfo": "cpp",
+        "ostream": "cpp"
+    }
+}

@@ -23,7 +23,9 @@
     "access": "public"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "prebuild-install || pnpm run build",
+    "build:addon": "pnpm exec node-gyp rebuild",
+    "build": "pnpm run build:addon"
   },
   "dependencies": {
     "node-addon-api": "^8.0.0",
