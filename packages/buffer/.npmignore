@@ -1,0 +1,8 @@
+node_modules/
+build/
+prebuilds/
+scripts/
+lib/
+**/*/_virtual/
+rollup.config.mjs
+tsconfig.json
