@@ -1,5 +1,5 @@
 {
-  "name": "@node-mapped-buffer/cli",
+  "name": "@mapped.js/cli",
   "description": "CLI for node-mapped-buffer, a implementation of Memory Mapped Buffer for node.js.",
   "author": "Fynn Haupt",
   "version": "1.0.0",
@@ -10,35 +10,43 @@
     "Buffer",
     "CLI"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "bin": {
+    "mapped.js": "./dist/cli.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "import": "./dist/schema.mjs",
+      "require": "./dist/schema.js"
     }
   },
   "scripts": {
     "build:parser": "pnpm exec rimraf src/parser && antlr4 -Dlanguage=TypeScript Schema.g4 -visitor -o src/parser",
     "build:src": "pnpm exec rimraf dist && pnpm exec rollup -c",
-    "build": "pnpm run build:parser && pnpm run build:src"
+    "build": "pnpm run build:parser && pnpm run build:src",
+    "prepare": "pnpm run build"
   },
-  "devDependencies": {
+  "dependencies": {
+    "@prettier/sync": "^0.5.2",
     "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-multi-entry": "^6.0.1",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.12.7",
+    "antlr4": "4.13.1-patch-1",
+    "commander": "^12.0.0",
+    "prettier": "^3.2.5",
     "rimraf": "^5.0.5",
     "rollup": "^4.15.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
-  },
-  "dependencies": {
-    "antlr4": "4.13.1-patch-1"
   }
 }
