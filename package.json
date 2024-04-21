@@ -13,5 +13,10 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "pnpm@8.15.6"
+  "packageManager": "pnpm@8.15.6",
+  "scripts": {
+    "build:cli": "cd packages/cli && pnpm run build",
+    "dev:cli:build": "pnpm run build:cli && node packages/cli/dist/cli.js build",
+    "dev:cli:generate": "pnpm run build:cli && node packages/cli/dist/cli.js generate"
+  }
 }
