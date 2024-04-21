@@ -17,6 +17,17 @@
   "scripts": {
     "build:cli": "cd packages/cli && pnpm run build",
     "dev:cli:build": "pnpm run build:cli && node packages/cli/dist/cli.js build",
-    "dev:cli:generate": "pnpm run build:cli && node packages/cli/dist/cli.js generate"
+    "dev:cli:generate": "pnpm run build:cli && node packages/cli/dist/cli.js generate",
+    "lint": "pnpm exec eslint packages/ --ext .ts",
+    "lint:fix": "pnpm exec eslint packages/ --ext .ts --fix"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.2.5",
+    "typedoc": "^0.25.13",
+    "typedoc-material-theme": "^1.0.2"
   }
 }
