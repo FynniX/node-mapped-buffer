@@ -12,11 +12,11 @@ const addon = require('../build/Release/mapped-buffer');
  */
 class MappedBuffer {
     /**
-   * @constructor
-   * @name MappedBuffer
-   * @param bufferPath The path of the buffer.
-   * @param struct The struct of the buffer.
-   */
+     * @constructor
+     * @name MappedBuffer
+     * @param bufferPath The path of the buffer.
+     * @param struct The struct of the buffer.
+     */
     constructor(bufferPath, struct) {
         /**
          * @name bufferSize
