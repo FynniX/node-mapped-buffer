@@ -1,0 +1,11 @@
+struct Test12A {
+    int1 a;
+    int b[2];
+}
+
+@PATH "test2"
+struct TestB123 {
+    unsigned char c;
+    TestA b;
+    TestA c[3][2];
+}
