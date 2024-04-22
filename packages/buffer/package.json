@@ -2,7 +2,7 @@
   "name": "@mapped.js/buffer",
   "description": "A implementation of Memory Mapped Buffer for node.js.",
   "author": "Fynn Haupt",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "keywords": [
     "Memory",
