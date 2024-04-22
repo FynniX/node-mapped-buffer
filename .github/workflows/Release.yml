@@ -48,7 +48,7 @@ jobs:
       - name: Publish package
         run: |
           cd packages/cli
-          pnpm publish
+          pnpm publish --no-git-checks
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -95,7 +95,7 @@ jobs:
       - name: Publish package
         run: |
             cd packages/buffer
-            pnpm publish
+            pnpm publish --no-git-checks
         env:
             NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
