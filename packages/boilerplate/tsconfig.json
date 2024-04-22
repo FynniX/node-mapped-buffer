@@ -2,8 +2,7 @@
   "compilerOptions": {
     "strict": true,
     "lib": ["esnext"],
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "CommonJS",
     "target": "es6",
     "outDir": "dist",
     "declaration": true

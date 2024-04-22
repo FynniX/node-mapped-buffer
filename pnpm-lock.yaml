@@ -36,6 +36,19 @@ importers:
         specifier: ^1.0.2
         version: 1.0.2(typedoc@0.25.13)
 
+  packages/boilerplate:
+    dependencies:
+      '@mapped.js/buffer':
+        specifier: ^1.0.0
+        version: link:../buffer
+      '@mapped.js/cli':
+        specifier: ^1.0.0
+        version: link:../cli
+    devDependencies:
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
   packages/buffer:
     dependencies:
       node-addon-api:
