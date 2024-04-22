@@ -31,6 +31,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "packageManager": "pnpm@8.15.6",
   "scripts": {
     "build:parser": "pnpm exec rimraf src/parser && antlr4 -Dlanguage=TypeScript Schema.g4 -visitor -o src/parser",
     "build:src": "pnpm exec rimraf dist && pnpm exec rollup -c",
