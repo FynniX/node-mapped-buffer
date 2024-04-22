@@ -4,4 +4,5 @@ pnpm run lint:fix
 pnpm run format:fix
 git add packages/cli/dist
 git add packages/buffer/dist
+git add packages/cli/src/parser
 git add docs
