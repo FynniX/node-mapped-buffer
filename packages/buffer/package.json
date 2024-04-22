@@ -38,7 +38,6 @@
     "build": "pnpm run build:addon && pnpm run build:lib",
     "prebuild:build:x64": "prebuild -all -a x64 --strip",
     "prebuild:build:ia32": "prebuild -all -a ia32 --strip",
-    "prebuild:build": "pnpm run prebuild:build:x64 && pnpm run prebuild:build:ia32",
     "prebuild:upload": "node ./scripts/prebuild-upload.js",
     "prepack": "pnpm run build"
   },
