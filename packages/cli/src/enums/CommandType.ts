@@ -1,4 +1,3 @@
 export enum CommandType {
-    Build = 'build',
-    Generate = 'generate',
+  Generate = 'generate'
 }

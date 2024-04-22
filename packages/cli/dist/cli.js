@@ -20,12 +20,8 @@ commander.program
     const options = commander.program.opts();
     const schemaPath = path.join(process.cwd(), (_a = options.schema) !== null && _a !== void 0 ? _a : 'schema.map');
     switch (command) {
-        case CommandType.CommandType.Build:
-            index.build();
-            break;
         case CommandType.CommandType.Generate:
             index.generate(schemaPath);
-            index.build();
             break;
         default:
             console.log('Unknown command: ' + command);

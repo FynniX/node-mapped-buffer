@@ -3,7 +3,7 @@ import { program } from 'commander';
 import { join } from 'path';
 import { CommandType } from './enums/CommandType.mjs';
 import { readFileSync } from 'fs';
-import { generate, build } from './index.mjs';
+import { generate } from './index.mjs';
 
 // Package.json
 const packageJson = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'));
@@ -17,12 +17,8 @@ program
     const options = program.opts();
     const schemaPath = join(process.cwd(), (_a = options.schema) !== null && _a !== void 0 ? _a : 'schema.map');
     switch (command) {
-        case CommandType.Build:
-            build();
-            break;
         case CommandType.Generate:
             generate(schemaPath);
-            build();
             break;
         default:
             console.log('Unknown command: ' + command);
