@@ -39,6 +39,7 @@
     "lint:fix": "pnpm exec eslint packages/ --ext .ts --fix",
     "format": "pnpm exec prettier packages/ --check --ignore-unknown",
     "format:fix": "pnpm exec prettier packages/ --write --ignore-unknown",
+    "docs": "pnpm exec rimraf docs && pnpm exec typedoc",
     "prepare": "husky"
   },
   "lint-staged": {
@@ -55,6 +56,7 @@
     "husky": "^9.0.11",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
     "typedoc": "^0.25.13",
     "typedoc-material-theme": "^1.0.2"
   }

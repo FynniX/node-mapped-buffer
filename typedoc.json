@@ -1,0 +1,17 @@
+{
+  "$schema": "https://typedoc.org/schema.json",
+  "name": "mapped.js",
+  "entryPointStrategy": "expand",
+  "entryPoints": ["./packages"],
+  "sort": ["source-order"],
+  "plugin": ["typedoc-material-theme"],
+  "themeColor": "#ff1e44",
+  "navigationLinks": {
+    "GitHub": "https://github.com/FynniX/mapped.js/"
+  },
+  "tsconfig": "tsconfig.docs.json",
+  "exclude": [
+    "**/packages/boilerplate/**",
+    "**/node_modules/**"
+  ]
+}
