@@ -1,0 +1,32 @@
+{
+  "private": true,
+  "name": "@mapped.js/boilerplate",
+  "description": "CLI for node-mapped-buffer, a implementation of Memory Mapped Buffer for node.js.",
+  "author": "Fynn Haupt",
+  "version": "1.0.0",
+  "license": "MIT",
+  "keywords": [
+    "Memory",
+    "Mapped",
+    "Buffer",
+    "Boilerplate"
+  ],
+  "main": "dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prestart": "pnpm run build",
+    "start": "node dist/index.js",
+    "prebuild": "pnpm run generate",
+    "build": "tsc",
+    "generate": "pnpm exec mapped.js generate"
+  },
+  "dependencies": {
+    "@mapped.js/buffer": "^1.0.0",
+    "@mapped.js/cli": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
+  }
+}

@@ -1,0 +1,4 @@
+@PATH "path_str"
+struct Test {
+    int a;
+}
