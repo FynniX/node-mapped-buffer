@@ -56,6 +56,26 @@ Napi::Value MappedBuffer::Create(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
+#ifdef __linux__
+    if (file != -1)
+    {
+        Napi::TypeError::New(env, "File mapping already exists")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+
+    file = open(
+        _bufferPath.c_str(),
+        O_RDWR | O_CREAT | O_TRUNC,
+        0x0777);
+
+    if (file < 0)
+    {
+        Napi::TypeError::New(env, "Couldn't create file mapping (" + _bufferPath + ").")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+#elif _WIN32
     if (file != nullptr)
     {
         Napi::TypeError::New(env, "File mapping already exists")
@@ -63,12 +83,6 @@ Napi::Value MappedBuffer::Create(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
-#ifdef __linux__
-    file = open(
-        _bufferPath.c_str(),
-        O_RDWR | O_CREAT | O_TRUNC,
-        0x0777);
-#elif _WIN32
     file = CreateFileMappingA(
         INVALID_HANDLE_VALUE, // use paging file
         NULL,                 // default security
@@ -76,14 +90,14 @@ Napi::Value MappedBuffer::Create(const Napi::CallbackInfo &info)
         0,                    // maximum object size (high-order DWORD)
         _bufferSize,          // maximum object size (low-order DWORD)
         _bufferPath.c_str()); // path of mapping object
-#endif
 
-    if (file == nullptr || file < 0)
+    if (file == nullptr)
     {
         Napi::TypeError::New(env, "Couldn't create file mapping (" + _bufferPath + ").")
             .ThrowAsJavaScriptException();
         return env.Undefined();
     }
+#endif
 
     return Napi::Buffer<char>::New(env, view(), _bufferSize);
 }
@@ -111,19 +125,26 @@ Napi::Value MappedBuffer::Open(const Napi::CallbackInfo &info)
         _bufferPath.c_str(),
         O_RDWR,
         0x0777);
-#elif _WIN32
-    file = OpenFileMappingA(
-        FILE_MAP_ALL_ACCESS,  // read/write access
-        FALSE,                // do not inherit the name
-        _bufferPath.c_str()); // path of mapping object
-#endif
 
-    if (file == nullptr || file < 0)
+    if (file < 0)
     {
         Napi::TypeError::New(env, "Couldn't open file mapping (" + _bufferPath + ").")
             .ThrowAsJavaScriptException();
         return env.Undefined();
     }
+#elif _WIN32
+    file = OpenFileMappingA(
+        FILE_MAP_ALL_ACCESS,  // read/write access
+        FALSE,                // do not inherit the name
+        _bufferPath.c_str()); // path of mapping object
+
+    if (file == nullptr)
+    {
+        Napi::TypeError::New(env, "Couldn't open file mapping (" + _bufferPath + ").")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+#endif
 
     return Napi::Buffer<char>::New(env, view(), _bufferSize);
 }
@@ -139,12 +160,31 @@ Napi::Value MappedBuffer::Read(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
+#ifdef __linux__
+    file = open(
+        _bufferPath.c_str(),
+        O_RDWR,
+        0x0777);
+
+    if (file < 0)
+    {
+        Napi::TypeError::New(env, "File mapping doesn't exists")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+#elif _WIN32
+    file = OpenFileMappingA(
+        FILE_MAP_ALL_ACCESS,  // read/write access
+        FALSE,                // do not inherit the name
+        _bufferPath.c_str()); // path of mapping object
+
     if (file == nullptr)
     {
         Napi::TypeError::New(env, "File mapping doesn't exists")
             .ThrowAsJavaScriptException();
         return env.Undefined();
     }
+#endif
 
     return Napi::Buffer<char>::New(env, view(), _bufferSize);
 }
@@ -176,14 +216,23 @@ Napi::Value MappedBuffer::Write(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
+#ifdef __linux__
+    if (file < 0)
+    {
+        Napi::TypeError::New(env, "File mapping doesn't exists")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+#elif _WIN32
     if (file == nullptr)
     {
         Napi::TypeError::New(env, "File mapping doesn't exists")
             .ThrowAsJavaScriptException();
         return env.Undefined();
     }
+#endif
 
-    if (newBuffer.Length() > _bufferSize)
+        if (newBuffer.Length() > _bufferSize)
     {
         Napi::TypeError::New(env, "Buffer is too big")
             .ThrowAsJavaScriptException();
