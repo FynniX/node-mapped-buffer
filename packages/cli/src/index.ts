@@ -7,7 +7,7 @@ import { format } from '@prettier/sync'
 
 export function generate(schemaPath: string, logging: boolean = false) {
   // Generate content
-  let contentDefinition = ''
+  let contentDefinition = 'import { StructCollection } from "./interfaces/StructCollection";\n\n'
   let contentCommon = ''
   let contentModule = ''
   const exportNames = []
@@ -17,7 +17,7 @@ export function generate(schemaPath: string, logging: boolean = false) {
     const template = StructBuilder.toString(name, struct.template)
     const type = new InterfaceBuilder(name, struct.template).build()
     if (path !== '') contentDefinition += `export declare const ${name}Path = "${struct.path}";\n\n`
-    contentDefinition += `export declare const ${name}: I${name};\n\n${type}\n\n`
+    contentDefinition += `export declare const ${name}: StructCollection;\n\n${type}\n\n`
     contentCommon += `${path}${template}\n\n`
     contentModule += `${path}${template}\n\n`
     exportNames.push(name)
