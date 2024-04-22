@@ -3,4 +3,5 @@ git add packages/cli/dist
 git add packages/buffer/dist
 pnpm run docs
 git add docs
-pnpm exec lint-staged --allow-empty
+pnpm run lint:fix
+pnpm run format:fix

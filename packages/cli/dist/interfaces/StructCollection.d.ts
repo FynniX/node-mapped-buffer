@@ -1,5 +1,5 @@
-import { VarType } from '../enums/VarType'
-import { Collection } from './Collection'
+import { VarType } from '../enums/VarType';
+import { Collection } from './Collection';
 export interface StructCollection {
-  [key: string]: VarType | Collection
+    [key: string]: VarType | Collection;
 }
