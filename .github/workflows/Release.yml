@@ -2,7 +2,7 @@ name: Release
 
 on:
   push:
-    tags: ["*"]
+    tags: ['*']
 
 jobs:
   publish-cli:
@@ -13,15 +13,15 @@ jobs:
         name: Checkout
 
       - uses: actions/setup-java@v4
-        name: Setup Java  
+        name: Setup Java
         with:
-          distribution: "temurin" # See 'Supported distributions' for available options
-          java-version: "21"
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '21'
 
       - uses: actions/setup-python@v5
         name: Setup Python
         with:
-          python-version: "3.10"
+          python-version: '3.10'
 
       - uses: pnpm/action-setup@v3
         name: Setup pnpm
@@ -33,12 +33,78 @@ jobs:
 
       - name: Setup environment
         run: |
-            cd packages/cli
+          cd packages/cli
+          pnpm install
+
+      #- name: Publish package
+        #run: |
+          #cd packages/cli
+          #pnpm publish
+        #env:
+          #NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  publish-buffer:
+    name: Publish Buffer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        name: Checkout
+
+      - uses: pnpm/action-setup@v3
+        name: Setup pnpm
+        with:
+          version: 8
+
+      - name: Setup environment
+        run: |
+            cd packages/buffer
             pnpm install
 
-      - name: Publish package
-        run: |
-            cd packages/cli
-            pnpm publish
+      #- name: Publish package
+        #run: |
+            #cd packages/buffer
+            #pnpm publish
+        #env:
+            #NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+  prebuild-windows:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Setup environment
+        run: pnpm install
+
+      - name: Prebuild addon
+        run: pnpm run prebuild:build
+
+      - name: Prebuild upload
+        run: pnpm run prebuild:upload
         env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+  
+  prebuild-linux:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      - name: Setup environment
+        run: pnpm install
+
+      - name: Prebuild addon
+        run: pnpm run prebuild:build
+
+      - name: Prebuild upload
+        run: pnpm run prebuild:upload
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
