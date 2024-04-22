@@ -1,5 +1,5 @@
 const MappedBuffer = require('../packages/buffer/dist/index.js').MappedBuffer
-const { TestB, TestBPath } = require('../packages/cli/dist/schema.js')
+const { TestB, TestBPath } = require('../packages/cli/schema.js')
 const assert = require('assert')
 
 assert(MappedBuffer, 'MappedBuffer is undefined')
