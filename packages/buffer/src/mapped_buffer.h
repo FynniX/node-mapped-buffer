@@ -4,6 +4,7 @@
 #include <napi.h>
 
 #ifdef __linux__
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/shm.h>
