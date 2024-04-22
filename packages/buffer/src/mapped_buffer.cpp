@@ -69,6 +69,9 @@ Napi::Value MappedBuffer::Create(const Napi::CallbackInfo &info)
         O_RDWR | O_CREAT | O_TRUNC,
         0x0777);
 
+    std::cout << "file: " << file << std::endl;
+    std::cout << GetLastError() << std::endl;
+
     if (file < 0)
     {
         Napi::TypeError::New(env, "Couldn't create file mapping (" + _bufferPath + ").")
