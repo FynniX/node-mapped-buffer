@@ -2,9 +2,9 @@
 node_modules/
 src/
 **/*/_virtual/
-**/*/schema.d.ts/
-**/*/schema.js/
-**/*/schema.mjs/
+schema.d.ts
+schema.js
+schema.mjs
 Schema.g4
 rollup.config.mjs
 tsconfig.json
