@@ -36,6 +36,15 @@ jobs:
           cd packages/cli
           pnpm install
 
+      - name: Run check for linting errors
+        run: pnpm run lint
+      
+      - name: Run check for formatting errors
+        run: pnpm run format
+      
+      - name: Run unit tests
+        run: pnpm run test
+
       #- name: Publish package
         #run: |
           #cd packages/cli
@@ -74,6 +83,15 @@ jobs:
             cd packages/buffer
             pnpm install
 
+      - name: Run check for linting errors
+        run: pnpm run lint
+    
+      - name: Run check for formatting errors
+        run: pnpm run format
+    
+      - name: Run unit tests
+        run: pnpm run test
+    
       #- name: Publish package
         #run: |
             #cd packages/buffer
