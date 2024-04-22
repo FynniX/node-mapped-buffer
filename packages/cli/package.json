@@ -23,9 +23,9 @@
       "require": "./dist/index.js"
     },
     "./schema": {
-      "types": "./dist/schema.d.ts",
-      "import": "./dist/schema.mjs",
-      "require": "./dist/schema.js"
+      "types": "./schema.d.ts",
+      "import": "./schema.mjs",
+      "require": "./schema.js"
     }
   },
   "publishConfig": {

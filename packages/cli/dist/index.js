@@ -28,11 +28,11 @@ function generate(schemaPath, logging = false) {
         path !== '' && exportNames.push(`${name}Path`);
     }
     // Write files
-    fs.writeFileSync(path.join(__dirname, '../dist/schema.d.ts'), sync.format(contentDefinition, { parser: 'typescript' }));
-    fs.writeFileSync(path.join(__dirname, '../dist/schema.js'), sync.format(`'use strict';\n\n${contentCommon}\n\n${exportNames.map((name) => `exports.${name} = ${name};`).join('\n')}`, {
+    fs.writeFileSync(path.join(__dirname, '../schema.d.ts'), sync.format(contentDefinition, { parser: 'typescript' }));
+    fs.writeFileSync(path.join(__dirname, '../schema.js'), sync.format(`'use strict';\n\n${contentCommon}\n\n${exportNames.map((name) => `exports.${name} = ${name};`).join('\n')}`, {
         parser: 'typescript'
     }));
-    fs.writeFileSync(path.join(__dirname, '../dist/schema.mjs'), sync.format(`${contentModule}\n\nexport {${exportNames.join(',')}};`, { parser: 'typescript' }));
+    fs.writeFileSync(path.join(__dirname, '../schema.mjs'), sync.format(`${contentModule}\n\nexport {${exportNames.join(',')}};`, { parser: 'typescript' }));
     console.log(`Generated ${schema.size} structs.`);
 }
 

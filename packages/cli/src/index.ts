@@ -25,9 +25,9 @@ export function generate(schemaPath: string, logging: boolean = false) {
   }
 
   // Write files
-  writeFileSync(join(__dirname, '../dist/schema.d.ts'), format(contentDefinition, { parser: 'typescript' }))
+  writeFileSync(join(__dirname, '../schema.d.ts'), format(contentDefinition, { parser: 'typescript' }))
   writeFileSync(
-    join(__dirname, '../dist/schema.js'),
+    join(__dirname, '../schema.js'),
     format(
       `'use strict';\n\n${contentCommon}\n\n${exportNames.map((name) => `exports.${name} = ${name};`).join('\n')}`,
       {
@@ -36,7 +36,7 @@ export function generate(schemaPath: string, logging: boolean = false) {
     )
   )
   writeFileSync(
-    join(__dirname, '../dist/schema.mjs'),
+    join(__dirname, '../schema.mjs'),
     format(`${contentModule}\n\nexport {${exportNames.join(',')}};`, { parser: 'typescript' })
   )
 
