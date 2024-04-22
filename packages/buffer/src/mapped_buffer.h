@@ -4,11 +4,9 @@
 #include <napi.h>
 
 #ifdef __linux__
-#include <fcntl.h>
-#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/mman.h>
+#include <sys/shm.h>
 #elif _WIN32
 #include <windows.h>
 #endif

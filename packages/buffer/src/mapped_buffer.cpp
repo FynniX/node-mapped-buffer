@@ -8,7 +8,7 @@ char *MappedBuffer::view()
         return buffer;
 
 #ifdef __linux__
-    buffer = (char *)mmap(NULL, _bufferSize, PROT_READ | PROT_WRITE, MAP_SHARED, file, 0);
+    buffer = (char *)shmat(file, 0, 0);
 #elif _WIN32
     buffer = (char *)MapViewOfFile(file, FILE_MAP_ALL_ACCESS, 0, 0, _bufferSize);
 #endif
@@ -64,13 +64,7 @@ Napi::Value MappedBuffer::Create(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
-    file = open(
-        _bufferPath.c_str(),
-        O_RDWR | O_CREAT | O_TRUNC,
-        0x0777);
-
-    std::cout << "file: " << file << std::endl;
-    std::cout << GetLastError() << std::endl;
+    file = shmget(_bufferPath.c_str(), _bufferSize, IPC_CREAT | S_IRUSR | S_IWUSR);
 
     if (file < 0)
     {
@@ -124,10 +118,7 @@ Napi::Value MappedBuffer::Open(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
-    file = open(
-        _bufferPath.c_str(),
-        O_RDWR,
-        0x0777);
+    file = shmget(_bufferPath.c_str(), _bufferSize, S_IRUSR | S_IWUSR);
 
     if (file < 0)
     {
@@ -171,11 +162,6 @@ Napi::Value MappedBuffer::Read(const Napi::CallbackInfo &info)
     }
 
 #ifdef __linux__
-    file = open(
-        _bufferPath.c_str(),
-        O_RDWR,
-        0x0777);
-
     if (file < 0)
     {
         Napi::TypeError::New(env, "File mapping doesn't exists")
@@ -183,11 +169,6 @@ Napi::Value MappedBuffer::Read(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 #elif _WIN32
-    file = OpenFileMappingA(
-        FILE_MAP_ALL_ACCESS,  // read/write access
-        FALSE,                // do not inherit the name
-        _bufferPath.c_str()); // path of mapping object
-
     if (file == nullptr)
     {
         Napi::TypeError::New(env, "File mapping doesn't exists")
@@ -250,15 +231,8 @@ Napi::Value MappedBuffer::Write(const Napi::CallbackInfo &info)
     }
 
     std::memcpy(buffer, newBuffer.Data(), newBuffer.Length());
-
-#ifdef __linux__
-    if (lseek(file, 0, SEEK_SET) == -1 || write(file, buffer, _bufferSize) != 1)
-    {
-        Napi::TypeError::New(env, "Couldn't flush view of file (" + _bufferPath + ").")
-            .ThrowAsJavaScriptException();
-        return env.Undefined();
-    }
-#elif _WIN32
+    
+#ifdef _WIN32
     if (!FlushViewOfFile(buffer, _bufferSize))
     {
         Napi::TypeError::New(env, "Couldn't flush view of file (" + _bufferPath + ").")
@@ -283,7 +257,7 @@ Napi::Value MappedBuffer::Close(const Napi::CallbackInfo &info)
 
 #ifdef __linux__
     if (buffer != nullptr)
-        munmap(buffer, _bufferSize);
+        shmdt(buffer);
 
     if (file != -1)
         close(file);
