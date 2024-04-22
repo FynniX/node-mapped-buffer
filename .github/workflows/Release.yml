@@ -45,12 +45,12 @@ jobs:
       - name: Run unit tests
         run: pnpm run test
 
-      #- name: Publish package
-        #run: |
-          #cd packages/cli
-          #pnpm publish
-        #env:
-          #NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish package
+        run: |
+          cd packages/cli
+          pnpm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-buffer:
     name: Publish Buffer
@@ -92,12 +92,12 @@ jobs:
       - name: Run unit tests
         run: pnpm run test
     
-      #- name: Publish package
-        #run: |
-            #cd packages/buffer
-            #pnpm publish
-        #env:
-            #NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: Publish package
+        run: |
+            cd packages/buffer
+            pnpm publish
+        env:
+            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   prebuild-windows:
     name: Prebuild Windows
