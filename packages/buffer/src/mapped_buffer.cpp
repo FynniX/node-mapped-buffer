@@ -64,7 +64,7 @@ Napi::Value MappedBuffer::Create(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
-    file = shmget(_bufferPath.c_str(), _bufferSize, IPC_CREAT | S_IRUSR | S_IWUSR);
+    file = shmget(ftok(_bufferPath.c_str(), 1), _bufferSize, IPC_CREAT | S_IRUSR | S_IWUSR);
 
     if (file < 0)
     {
@@ -118,7 +118,7 @@ Napi::Value MappedBuffer::Open(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
-    file = shmget(_bufferPath.c_str(), _bufferSize, S_IRUSR | S_IWUSR);
+    file = shmget(ftok(_bufferPath.c_str(), 1), _bufferSize, S_IRUSR | S_IWUSR);
 
     if (file < 0)
     {
