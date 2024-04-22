@@ -113,14 +113,14 @@ Napi::Value MappedBuffer::Open(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 
-    if (file != nullptr)
+#ifdef __linux__
+    if (file != -1)
     {
         Napi::TypeError::New(env, "File mapping already exists")
             .ThrowAsJavaScriptException();
         return env.Undefined();
     }
 
-#ifdef __linux__
     file = open(
         _bufferPath.c_str(),
         O_RDWR,
@@ -133,6 +133,13 @@ Napi::Value MappedBuffer::Open(const Napi::CallbackInfo &info)
         return env.Undefined();
     }
 #elif _WIN32
+    if (file != nullptr)
+    {
+        Napi::TypeError::New(env, "File mapping already exists")
+            .ThrowAsJavaScriptException();
+        return env.Undefined();
+    }
+
     file = OpenFileMappingA(
         FILE_MAP_ALL_ACCESS,  // read/write access
         FALSE,                // do not inherit the name
@@ -232,7 +239,7 @@ Napi::Value MappedBuffer::Write(const Napi::CallbackInfo &info)
     }
 #endif
 
-        if (newBuffer.Length() > _bufferSize)
+    if (newBuffer.Length() > _bufferSize)
     {
         Napi::TypeError::New(env, "Buffer is too big")
             .ThrowAsJavaScriptException();
