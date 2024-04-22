@@ -11,8 +11,6 @@ export default {
     "path",
     "commander",
     "antlr4",
-    "rollup",
-    "rollup/dist/loadConfigFile.js",
     "@prettier/sync",
   ],
   output: [
