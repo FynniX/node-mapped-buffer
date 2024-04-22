@@ -5,8 +5,8 @@ on:
     tags: ['*']
 
 jobs:
-  publish-cli:
-    name: Publish CLI
+  publish:
+    name: Publish Packages
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -33,71 +33,22 @@ jobs:
 
       - name: Setup environment
         run: |
-          cd packages/cli
+          cd packages/buffer
           pnpm install
 
       - name: Run check for linting errors
         run: pnpm run lint
-      
+
       - name: Run check for formatting errors
         run: pnpm run format
-      
+
       - name: Run unit tests
         run: pnpm run test
 
       - name: Publish package
-        run: |
-          cd packages/cli
-          pnpm publish --no-git-checks
+        run: pnpm -r publish --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-  publish-buffer:
-    name: Publish Buffer
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        name: Checkout
-
-      - uses: actions/setup-java@v4
-        name: Setup Java
-        with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
-          java-version: '21'
-
-      - uses: actions/setup-python@v5
-        name: Setup Python
-        with:
-          python-version: '3.10'
-
-      - uses: pnpm/action-setup@v3
-        name: Setup pnpm
-        with:
-          version: 8
-
-      - name: Setup Antlr4
-        run: pip install --no-input antlr4-tools
-
-      - name: Setup environment
-        run: |
-            cd packages/buffer
-            pnpm install
-
-      - name: Run check for linting errors
-        run: pnpm run lint
-    
-      - name: Run check for formatting errors
-        run: pnpm run format
-    
-      - name: Run unit tests
-        run: pnpm run test
-    
-      - name: Publish package
-        run: |
-            cd packages/buffer
-            pnpm publish --no-git-checks
-        env:
-            NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+            NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   prebuild-windows:
     name: Prebuild Windows
@@ -138,7 +89,7 @@ jobs:
         run: pnpm run prebuild:upload
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
-  
+
   prebuild-linux:
     name: Prebuild Linux
     runs-on: ubuntu-latest
