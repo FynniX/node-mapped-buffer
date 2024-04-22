@@ -50,7 +50,6 @@ jspm_packages/
 _virtual/
 
 # .schema folders
-schema.ts
 schema.d.ts
 schema.js
 schema.mjs
