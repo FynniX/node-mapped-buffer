@@ -1,4 +1,4 @@
 export enum CollectionType {
-    Array = 'array',
-    Struct = 'struct'
+  Array = 'array',
+  Struct = 'struct'
 }

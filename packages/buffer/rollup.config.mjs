@@ -11,21 +11,21 @@ export default {
       dir: 'dist',
       format: 'cjs',
       preserveModules: true,
-      exports: 'named',
+      exports: 'named'
     },
     {
       dir: 'dist',
       format: 'es',
       entryFileNames: '[name].mjs',
       preserveModules: true,
-      exports: 'named',
+      exports: 'named'
     }
   ],
   plugins: [
     typescript(),
     commonjs(),
     multi({
-      preserveModules: true,
+      preserveModules: true
     })
   ]
 }
