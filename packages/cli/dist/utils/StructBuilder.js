@@ -23,7 +23,7 @@ class StructBuilder {
         return this._struct;
     }
     static toString(name, struct) {
-        return `export const ${name} = ${JSON.stringify(struct, null, 2)}`;
+        return `const ${name} = ${JSON.stringify(struct, null, 2)}`;
     }
     static createArray(type, size) {
         return { type: CollectionType.CollectionType.Array, data: { type, size } };
