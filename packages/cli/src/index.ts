@@ -7,7 +7,7 @@ import { format } from '@prettier/sync'
 
 export function generate(schemaPath: string, logging: boolean = false) {
   // Generate content
-  let contentDefinition = 'import { StructCollection } from "./interfaces/StructCollection";\n\n'
+  let contentDefinition = 'import { StructCollection } from "./dist/interfaces/StructCollection";\n\n'
   let contentCommon = ''
   let contentModule = ''
   const exportNames = []

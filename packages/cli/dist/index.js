@@ -10,7 +10,7 @@ var sync = require('@prettier/sync');
 
 function generate(schemaPath, logging = false) {
     // Generate content
-    let contentDefinition = 'import { StructCollection } from "./interfaces/StructCollection";\n\n';
+    let contentDefinition = 'import { StructCollection } from "./dist/interfaces/StructCollection";\n\n';
     let contentCommon = '';
     let contentModule = '';
     const exportNames = [];
