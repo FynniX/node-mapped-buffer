@@ -37,8 +37,8 @@
     "test": "pnpm run test:cli && pnpm run test:buffer",
     "lint": "pnpm exec eslint packages/ --ext .ts",
     "lint:fix": "pnpm exec eslint packages/ --ext .ts --fix",
-    "format": "pnpm exec prettier packages/**/*.ts --check --ignore-unknown",
-    "format:fix": "pnpm exec prettier packages/**/*.ts --write --ignore-unknown",
+    "format": "pnpm exec prettier packages/ --check --ignore-unknown",
+    "format:fix": "pnpm exec prettier packages/ --write --ignore-unknown",
     "docs": "pnpm exec rimraf docs && pnpm exec typedoc",
     "prepare": "husky"
   },
