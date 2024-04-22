@@ -28,6 +28,14 @@
       "require": "./schema.js"
     }
   },
+  "homepage": "https://github.com/FynniX/mapped.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FynniX/mapped.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FynniX/mapped.js/issues"
+  },
   "publishConfig": {
     "access": "public"
   },

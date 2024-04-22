@@ -23,6 +23,14 @@
     "access": "public"
   },
   "packageManager": "pnpm@8.15.6",
+  "homepage": "https://github.com/FynniX/mapped.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FynniX/mapped.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FynniX/mapped.js/issues"
+  },
   "scripts": {
     "install": "prebuild-install || pnpm run build:addon",
     "build:addon": "pnpm exec node-gyp rebuild",

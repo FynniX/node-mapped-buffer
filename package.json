@@ -14,6 +14,14 @@
     "packages/*"
   ],
   "packageManager": "pnpm@8.15.6",
+  "homepage": "https://github.com/FynniX/mapped.js#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FynniX/mapped.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/FynniX/mapped.js/issues"
+  },
   "scripts": {
     "build:cli": "cd packages/cli && pnpm run build",
     "build:buffer": "cd packages/buffer && pnpm run build",
