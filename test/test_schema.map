@@ -5,6 +5,7 @@ struct TestA {
 
 @PATH "test"
 struct TestB {
+    int d;
     unsigned char c;
     TestA b;
     TestA c[3][2];
