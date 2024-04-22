@@ -1,7 +1,7 @@
 pnpm run build
-git add packages/cli/dist
-git add packages/buffer/dist
 pnpm run docs
-git add docs
 pnpm run lint:fix
 pnpm run format:fix
+git add packages/cli/dist
+git add packages/buffer/dist
+git add docs
