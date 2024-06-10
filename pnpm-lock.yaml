@@ -68,8 +68,8 @@ importers:
         specifier: ^11.1.6
         version: 11.1.6(rollup@4.16.2)(tslib@2.6.2)(typescript@5.4.5)
       '@types/node':
-        specifier: ^20.12.7
-        version: 20.12.7
+        specifier: ^20.14.2
+        version: 20.14.2
       prebuild:
         specifier: ^13.0.0
         version: 13.0.0
@@ -114,8 +114,8 @@ importers:
         specifier: ^11.1.6
         version: 11.1.6(rollup@4.16.2)(tslib@2.6.2)(typescript@5.4.5)
       '@types/node':
-        specifier: ^20.12.7
-        version: 20.12.7
+        specifier: ^20.14.2
+        version: 20.14.2
       rimraf:
         specifier: ^5.0.5
         version: 5.0.5
@@ -498,8 +498,8 @@ packages:
     resolution: {integrity: sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==}
     dev: true
 
-  /@types/node@20.12.7:
-    resolution: {integrity: sha512-wq0cICSkRLVaf3UGLMGItu/PtdY7oaXaI/RVU+xliKVOtRna3PRY57ZDfztpDL0n11vfymMUnXv8QwYCO7L1wg==}
+  /@types/node@20.14.2:
+    resolution: {integrity: sha512-xyu6WAMVwv6AKFLB+e/7ySZVr/0zLCzOa7rSpq6jNwpqOrUbcACDWC+53d4n2QHOnDou0fbIsg8wZu/sxrnI4Q==}
     dependencies:
       undici-types: 5.26.5
     dev: true
